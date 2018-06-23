@@ -5,7 +5,7 @@ import MapGL from 'react-map-gl';
 import DeckGLOverlay from './components/deckgl-overlay.js';
 import LayerControls from './components/layer-controls';
 import autobind from 'react-autobind';
-import { DataFiles } from './components/data-files.js';
+import { DataFiles, InitialYear, FinalYear } from './components/data-files.js';
 
 import { csv as requestCsv } from 'd3-request';
 
@@ -15,9 +15,7 @@ let MAPBOX_TOKEN = process.env.MapboxAccessToken; // eslint-disable-line
 if (!MAPBOX_TOKEN)
   MAPBOX_TOKEN = "mapbox-token-here";
 
-const INITIAL_YEAR = 2008;
-const FINAL_YEAR = 2017;
-const NUM_DATASETS = FINAL_YEAR - INITIAL_YEAR + 1;
+const NUM_DATASETS = FinalYear - InitialYear + 1;
 
 class Root extends Component {
 
@@ -40,8 +38,8 @@ class Root extends Component {
       rangeData: [],
       eventInfo: 0,
       clickedInfo: null,
-      year: FINAL_YEAR,
-      range: [INITIAL_YEAR, FINAL_YEAR],
+      year: FinalYear,
+      range: [InitialYear, FinalYear],
       binType: 'per-year',
       allDataLoaded: false
 
@@ -147,8 +145,8 @@ class Root extends Component {
   buildRangeData() {
 
     let r = this.state.range;
-    let startIdx = r[0] - INITIAL_YEAR;
-    let endIdx = r[1] - INITIAL_YEAR;
+    let startIdx = r[0] - InitialYear;
+    let endIdx = r[1] - InitialYear;
     //console.log("building range data: " + startIdx + ", " + endIdx);
 
     let rdata = this.state.data[startIdx];
@@ -176,8 +174,8 @@ class Root extends Component {
 
   getRangeIndexes() {
     return (
-      [this.state.range[0] - INITIAL_YEAR,
-      this.state.range[1] - INITIAL_YEAR]
+      [this.state.range[0] - InitialYear,
+      this.state.range[1] - InitialYear]
     )
   }
 
@@ -186,7 +184,7 @@ class Root extends Component {
     const { viewport, data } = this.state;
 
     let numEventsInLayer = 0;
-    let yearIdx = this.state.year - INITIAL_YEAR;
+    let yearIdx = this.state.year - InitialYear;
     let useRange = false;
 
     if (this.state.binType == "range") {
@@ -215,8 +213,8 @@ class Root extends Component {
           </div>
           <hr className="hrule" />
           <LayerControls
-            initialYear={INITIAL_YEAR}
-            finalYear={FINAL_YEAR}
+            initialYear={InitialYear}
+            finalYear={FinalYear}
             opacity={this.state.opacity}
             coverage={this.state.coverage}
             radius={this.state.radius}

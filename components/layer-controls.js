@@ -114,6 +114,8 @@ class LayerControls extends Component {
         {useRange ? (
           <RangeYears
             range={this.props.range}
+            initialYear={this.props.initialYear}
+            finalYear={this.props.finalYear}
             updateRange={this.props.updateRange}
             timeEnabled={this.props.timeEnabled}
           />
@@ -184,8 +186,8 @@ function RangeYears(props) {
     <div className="time-slider">
       <p style={{marginRight: '40px'}}>Span:</p>
       <RangeSlider
-        min={2008}
-        max={2017}
+        min={props.initialYear}
+        max={props.finalYear}
         stepSize={1}
         onChange={props.updateRange}
         value={props.range}
