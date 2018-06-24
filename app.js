@@ -32,15 +32,15 @@ class Root extends Component {
       },
       opacity: 0.75,
       coverage: 0.9,
-      radius: 57000,
-      elevScale: 10000,
+      radius: 95000,
+      elevScale: 50000,
       data: [],
       rangeData: [],
       eventInfo: 0,
       clickedInfo: null,
       year: FinalYear,
       range: [InitialYear, FinalYear],
-      binType: 'per-year',
+      binType: 'range',
       allDataLoaded: false
 
     };
@@ -57,8 +57,10 @@ class Root extends Component {
     this.setState({ data: dataArr });
     ++this.dataSetsLoaded;
 
-    if(this.dataSetsLoaded === NUM_DATASETS)
+    if(this.dataSetsLoaded === NUM_DATASETS) {
       this.setState({allDataLoaded: true});
+      this.buildRangeData();
+    }
 
   }
 

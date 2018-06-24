@@ -65,7 +65,7 @@ class LayerControls extends Component {
               <div className='bp-slider'>
                 <Slider
                   min={100}
-                  max={40100}
+                  max={60100}
                   stepSize={1000}
                   onChange={this.props.updateElev.bind(this)}
                   value={this.props.elevScale}
@@ -81,7 +81,7 @@ class LayerControls extends Component {
               <div className='bp-slider'>
                 <Slider
                   min={500}
-                  max={100500}
+                  max={150500}
                   stepSize={1000}
                   onChange={this.props.updateRadius.bind(this)}
                   value={this.props.radius}
